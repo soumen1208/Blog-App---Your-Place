@@ -1,0 +1,6 @@
+1. install dependencies
+2. express, nodemon, .env, mongoose, bodyParser, bcrypt, json-web-token, 
+3. diff between put and patch req => using put our all data changeble
+4. .env require and config for using
+5. signup and signin routing/api create, hasing and salting create, 
+6. token generate => evidence of user is he true person for authentiate
