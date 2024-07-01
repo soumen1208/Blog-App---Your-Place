@@ -3,6 +3,7 @@ const app = express();
 const blogRoutes = require('./api/routes/blog')
 const categoryRoutes = require('./api/routes/category')
 const authRoutes = require('./api/routes/auth')
+const commentRoutes = require('./api/routes/comment')
 const bodyParser = require('body-parser');
 const { urlencoded, json } = require('body-parser')
 const mongoose = require('mongoose');
@@ -27,11 +28,12 @@ app.use(bodyParser.json());
 app.use('/blog', blogRoutes);
 app.use('/category', categoryRoutes);
 app.use('/auth', authRoutes);
+app.use('/comment', commentRoutes);
 
 
 app.use((req, res) => {
     res.status(200).json({
-        msg: "url not found"
+        msg: "bad request"
     })
 })
 

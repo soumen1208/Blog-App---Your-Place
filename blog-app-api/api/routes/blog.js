@@ -2,9 +2,10 @@ const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
 const Blog = require('../model/blog');
+const checkAdmin = require('../middleware/checkAdmin');
 
 // post bblog by admin
-router.post('/', async (req, res) => {
+router.post('/', checkAdmin, async (req, res) => {
     const newBlog = new Blog({
         _id: new mongoose.Types.ObjectId,
         title: req.body.title,
@@ -80,7 +81,7 @@ router.get('/category/:category', (req, res) => {
 })
 
 // deleted data || DELETE
-router.delete('/:id', (req, res) => {
+router.delete('/:id', checkAdmin, (req, res) => {
     // const { id } = req.params;
     Blog.deleteOne({ _id: req.params.id })
         // .select('_id title description imageUrl')
@@ -98,7 +99,7 @@ router.delete('/:id', (req, res) => {
 })
 
 // update the blog || PUT
-router.put('/:id', (req, res) => {
+router.put('/:id', checkAdmin, (req, res) => {
     Blog.updateOne({ _id: req.params.id }, req.body)
         .then(result => {
             res.status(200).json({

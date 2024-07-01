@@ -56,7 +56,8 @@ router.post('/user/login', (req, res) => {
                 }
                 const token = jwt.sign({
                     email: user[0].email,
-                    fullName: user[0].fullName
+                    fullName: user[0].fullName,
+                    userType: 'user'
                 },
                     process.env.JWT,
                     {
@@ -86,7 +87,8 @@ router.post('/admin/login', (req, res) => {
     if (req.body.userName == uN && req.body.password == pass) {
         const token = jwt.sign({
             email: 'soumen@gmail.com',
-            fullName: 'Soumen Mahato'
+            fullName: 'Soumen Mahato',
+            userType: 'admin'
         },
             process.env.JWT,
             {

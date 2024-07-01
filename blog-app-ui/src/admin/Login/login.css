@@ -1,0 +1,70 @@
+.loginContainer {
+    height: 100vh;
+    width: 100%;
+    background-color: rgb(14, 14, 14);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loginbox {
+    height: 350px;
+    width: 40%;
+    background-color: #eee;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 1px 1px 30px 20px rgb(2, 50, 127);
+}
+
+input {
+    /* width: 100%; */
+    padding: 8px;
+    width: 85%;
+    margin: 10px;
+    border: none;
+    box-shadow: 1px 1px 10px 2px rgb(116, 115, 115);
+    border-radius: 10px;
+    font-size: 15px;
+}
+
+button {
+    width: 44%;
+    padding: 5px;
+    margin-left: 7px;
+    border: none;
+    box-shadow: 1px 1px 10px 2px rgb(85, 84, 84);
+    border-radius: 10px;
+}
+
+.blue {
+    background-color: rgb(95, 44, 247);
+}
+
+.blue:hover {
+    background-color: rgb(4, 21, 253);
+    color: white;
+    box-shadow: 1px 1px 10px 2px rgb(1, 72, 250);
+}
+
+.green {
+    background-color: rgb(139, 228, 6);
+}
+
+.green:hover {
+    background-color: green;
+    color: white;
+    box-shadow: 1px 1px 10px 2px rgb(2, 241, 81);
+}
+
+    {
+    box-sizzing: border-box,
+}
+
+.blogname {
+    display: flex;
+    margin-left: 20%;
+    margin-top: 0px;
+}
