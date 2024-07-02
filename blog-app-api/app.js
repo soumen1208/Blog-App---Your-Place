@@ -7,6 +7,7 @@ const commentRoutes = require('./api/routes/comment')
 const bodyParser = require('body-parser');
 const { urlencoded, json } = require('body-parser')
 const mongoose = require('mongoose');
+const cors = require('cors');
 
 
 const dotenv = require('dotenv');
@@ -24,6 +25,8 @@ mongoose.connection.on('error', (err) => {
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+
+app.use(cors());
 
 app.use('/blog', blogRoutes);
 app.use('/category', categoryRoutes);

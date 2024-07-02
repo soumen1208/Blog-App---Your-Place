@@ -28,12 +28,13 @@ input {
     box-shadow: 1px 1px 10px 2px rgb(116, 115, 115);
     border-radius: 10px;
     font-size: 15px;
+    margin-left: 25px;
 }
 
 button {
-    width: 44%;
+    width: 40%;
     padding: 5px;
-    margin-left: 7px;
+    margin-left: 32px;
     border: none;
     box-shadow: 1px 1px 10px 2px rgb(85, 84, 84);
     border-radius: 10px;
@@ -59,12 +60,49 @@ button {
     box-shadow: 1px 1px 10px 2px rgb(2, 241, 81);
 }
 
-    {
-    box-sizzing: border-box,
-}
 
 .blogname {
     display: flex;
-    margin-left: 20%;
+    margin-left: 30%;
     margin-top: 0px;
+    font-family: 'Times New Roman', Times, serif;
+    text-decoration: underline;
+
+}
+
+.profileImg {
+    height: 15%;
+    width: 15%;
+    border-radius: 50%;
+    margin-left: 38%;
+
+}
+
+@media screen and (max-width: 700px) {
+    .loginbox {
+        width: 70%;
+        height: 50%;
+    }
+
+    .btn {
+        display: flex;
+        flex-direction: row;
+    }
+
+    button {
+        margin-left: 16px;
+    }
+
+    h1 {
+        font-size: 15px;
+    }
+
+    input {
+        margin-left: 10px;
+    }
+
+    .profileImg {
+        margin-left: 40%;
+    }
+
 }
