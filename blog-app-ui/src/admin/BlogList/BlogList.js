@@ -1,8 +1,79 @@
-import React from 'react'
+import axios from 'axios'
+import React, { useEffect, useState } from 'react'
+import '../BlogList/bloglist.css'
+import { deleteObject, getStorage, ref } from 'firebase/storage';
+import { app } from '../../firebase';
+import { useNavigate } from 'react-router-dom';
 
 function BlogList() {
+
+    const [blogs, setBlogs] = useState([]);
+    const navigate = useNavigate()
+
+    useEffect(() => {
+        getBlogs();
+    }, [])
+
+    const getBlogs = () => {
+        axios.get('http://localhost:3000/blog')
+            .then(res => {
+                console.log(res.data.blogs);
+                setBlogs(res.data.blogs);
+            })
+            .catch(err => {
+                console.log(err);
+            })
+    }
+
+    const deleteBlog = (blogData) => {
+        if (window.confirm('Are you sure want to delete ?')) {
+
+            const storage = getStorage(app)
+            const myRef = ref(storage, `${blogData.imageUrl}`)
+
+            deleteObject(myRef)
+
+                .then(result => {
+                    axios.delete('http://localhost:3000/blog/' + blogData._id)
+                        .then(result => {
+                            console.log(result);
+                            getBlogs();
+                        })
+                        .catch(err => {
+                            console.log(err);
+                        })
+
+                })
+                .catch(err => {
+                    console.log(err);
+                })
+        }
+    }
+
     return (
-        <div>BlogList</div>
+        <div className='blogContainer'>
+            {blogs.map(data => (
+                <div key={data._id} className='blogContain'>
+
+                    <div className='blogTitle' style={{ fontFamily: 'fantasy', color: 'white' }}>
+                        <p>{data.title}</p>
+                    </div>
+
+                    <div className='blogTitle'>
+                        <img className='blogImg' src={data.imageUrl} alt='blogImage'></img>
+                    </div>
+
+                    <div className='blogTitle'>
+                        <button onClick={() => { navigate('/admin/dashboard/edit-blog', { state: { myData: data } }) }} className='editBtnBlog' type='submit'>Edit</button>
+                    </div>
+                    <div className='blogTitle'>
+                        <button onClick={() => { deleteBlog(data) }} className='deleteBtnBlog' type='submit'>Delete</button>
+                    </div>
+
+                </div >
+            ))
+            }
+        </div >
     )
 }
 

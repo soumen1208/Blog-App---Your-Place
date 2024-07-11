@@ -1,0 +1,28 @@
+h1 {
+    color: red;
+
+}
+
+.category-container {
+    width: 100%;
+}
+
+.cat-form {
+    width: 40%;
+}
+
+.cat-btn {
+    padding: 5px;
+    margin-left: 253px;
+    /* width: 100%; */
+    border: none;
+    box-shadow: 1px 1px 10px 2px rgb(85, 84, 84);
+    border-radius: 10px;
+    background-color: rgb(146, 243, 146);
+}
+
+.cat-btn:hover {
+    background-color: green;
+    color: white;
+
+}
