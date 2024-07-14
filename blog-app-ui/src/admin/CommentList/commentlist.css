@@ -1,0 +1,60 @@
+.commentContainer {
+    width: 100%;
+    height: 100vh;
+    overflow: scroll;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding-left: 45px;
+    align-items: center;
+}
+
+.commentContain {
+    margin: 10px;
+    height: 270px;
+    width: 270px;
+    padding: 5px;
+    border-radius: 10px;
+    background-color: white;
+    box-shadow: 1px 1px 10px 5px rgb(17, 17, 220);
+}
+
+.comment {
+    width: 250px;
+    height: 250px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.email {
+    font-size: 13px;
+    display: flex;
+    justify-content: center;
+    color: steelblue;
+    text-decoration: underline;
+    font-weight: bold
+}
+
+.cmntText {
+    font-family: fantasy;
+    text-shadow: 3px 4px 3px grey
+}
+
+.time&del {
+    width: 270px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.delBtn {
+    width: 50px;
+    margin-left: 200px;
+    background-color: rgb(242, 100, 100);
+}
+
+.delBtn:hover {
+    background-color: red;
+    color: white;
+}

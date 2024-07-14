@@ -3,14 +3,16 @@ const router = express.Router();
 const mongoose = require('mongoose');
 const Comment = require('../model/comment');
 const checkAuth = require('../middleware/checkAuth');
+const checkAdmin = require('../middleware/checkAdmin');
 
 // post new comment
-router.post('/', checkAuth, async (req, res) => {
+router.post('/', async (req, res) => {
     const newComment = new Comment({
         _id: new mongoose.Types.ObjectId,
         email: req.body.email,
         commentText: req.body.commentText,
-        blogId: req.body.blogId
+        blogId: req.body.blogId,
+        timestamp: req.body.timestamp
     })
     newComment.save()
         .then(result => {
@@ -29,7 +31,7 @@ router.post('/', checkAuth, async (req, res) => {
 // get all comment || GET
 router.get('/', (req, res) => {
     Comment.find()
-        .select('_id email commentText blogId')
+        .select('_id email commentText blogId timestamp')
         .then(result => {
             res.status(200).json({
                 comments: result
@@ -44,7 +46,7 @@ router.get('/', (req, res) => {
 })
 
 // delete comment by id || DELETE
-router.delete('/:id', (req, res) => {
+router.delete('/:id', checkAuth, checkAdmin, (req, res) => {
     // const { id } = req.params;
     Comment.deleteOne({ _id: req.params.id })
         // .select('_id title description imageUrl')

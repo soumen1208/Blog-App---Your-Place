@@ -14,7 +14,10 @@ commentSchema = mongoose.Schema({
         type: String,
         required: [true, "Email is required"]
     },
-
-}, { timestamps: true })
+    timestamp: {
+        type: Date,
+        default: Date.now
+    }
+})
 
 module.exports = mongoose.model('Comment', commentSchema)

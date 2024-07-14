@@ -58,6 +58,10 @@
 
 }
 
-.blogTitle {
-    width: 25%;
+.blogDiv1 {
+    width: 50%;
+}
+
+.blogDiv2 {
+    width: 20%;
 }

@@ -51,7 +51,11 @@ button {
 }
 
 .green {
+    margin-left: 49%;
     background-color: rgb(139, 228, 6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .green:hover {

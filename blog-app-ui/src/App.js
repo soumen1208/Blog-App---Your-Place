@@ -9,13 +9,30 @@ import AddBlog from './admin/AddBlog.js/AddBlog';
 import CategoryList from './admin/CategoryList/CategoryList';
 import AddCategory from './admin/AddCategory/AddCategory';
 import CommentList from './admin/CommentList/CommentList';
+import { isLogin } from './checkAuth';
+import UserLayOut from './user/UserLayOut';
+import UserHome from './user/Home/UserHome';
+import About from './user/About/About';
+import Contact from './user/Contact/Contact';
+import BlogUser from './user/BlogUser/BlogUser';
+import UserLogin from './user/UserLogin/UserLogin';
 
 const router = createBrowserRouter([
+  {
+    path: '', element: <UserLayOut />, children: [
+      { path: '', element: <UserHome /> },
+      { path: 'home', element: <UserHome /> },
+      { path: 'about', element: <About /> },
+      { path: 'contact', element: <Contact /> },
+      { path: 'blog', element: <BlogUser /> },
+      { path: 'user-login', element: <UserLogin /> }
+    ]
+  },
   {
     path: 'admin', element: <AdminLayout />, children: [
       { path: 'login', element: <Login /> },
       {
-        path: 'dashboard', element: <Dashboard />, children: [
+        path: 'dashboard', loader: isLogin, element: <Dashboard />, children: [
           { path: '', element: <Home /> },
           { path: 'blog', element: <BlogList /> },
           { path: 'add-blog', element: <AddBlog key="blog" mode="blog" /> },

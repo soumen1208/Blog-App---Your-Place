@@ -34,7 +34,11 @@ function CategoryList() {
             deleteObject(myRef)
 
                 .then(result => {
-                    axios.delete('http://localhost:3000/category/' + categoryData._id)
+                    axios.delete('http://localhost:3000/category/' + categoryData._id, {
+                        headers: {
+                            Authorization: "Bearer " + localStorage.getItem('token')
+                        }
+                    })
                         .then(result => {
                             console.log(result);
                             getCategoryData();

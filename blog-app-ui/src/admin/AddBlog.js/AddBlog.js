@@ -6,6 +6,8 @@ import axios from 'axios';
 import { useLocation, useNavigate } from 'react-router-dom';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css'
+import CircularProgress from '@mui/material/CircularProgress';
+
 
 function AddBlog() {
 
@@ -15,6 +17,7 @@ function AddBlog() {
     const [categoryList, setCategoryList] = useState([])
     const [file, setFile] = useState(null);
     const [imageUrl, setInamgeUrl] = useState(null);
+    const [loading, setLoading] = useState(false);
 
     const navigate = useNavigate();
     const location = useLocation()
@@ -46,8 +49,15 @@ function AddBlog() {
         setInamgeUrl(URL.createObjectURL(e.target.files[0]))
     }
 
+    const handleBlog = (content, delta, source, editor) => {
+        console.log(content);
+        setBlog(content)
+    }
+
+
     const submitHandler = async (event) => {
         event.preventDefault();
+        setLoading(true)
         if (location.state == null) {
 
             console.log(categoryName, file);
@@ -64,8 +74,13 @@ function AddBlog() {
                 category: categoryName,
                 description: blog,
                 imageUrl: uploadedImgUrl
+            }, {
+                headers: {
+                    Authorization: "Bearer " + localStorage.getItem('token')
+                }
             })
                 .then(res => {
+                    setLoading(false);
                     console.log(res.data);
                     navigate('/admin/dashboard/blog')
 
@@ -80,8 +95,13 @@ function AddBlog() {
                 category: categoryName,
                 description: blog,
                 imageUrl: location.state.myData.imageUrl
+            }, {
+                headers: {
+                    Authorization: "Bearer " + localStorage.getItem('token')
+                }
             })
                 .then(res => {
+                    setLoading(false);
                     console.log(res.data);
                     navigate('/admin/dashboard/blog')
 
@@ -105,8 +125,13 @@ function AddBlog() {
                 category: categoryName,
                 description: blog,
                 imageUrl: uploadedImgUrl
+            }, {
+                headers: {
+                    Authorization: "Bearer " + localStorage.getItem('token')
+                }
             })
                 .then(res => {
+                    setLoading(false);
                     console.log(res.data);
                     navigate('/admin/dashboard/category')
 
@@ -120,12 +145,13 @@ function AddBlog() {
 
     return (
         <div className=' blog-container'>
-            <p> Add New Blog </p>
+            <p style={{ marginLeft: "79%", color: "honeydew" }}> Add New Blog and Update the blog </p>
 
             <form onSubmit={submitHandler} className='blog-form'>
                 <input className='blog-title' value={blogTitle} onChange={(e) => { setBlogTitle(e.target.value) }} type='text' placeholder='Blog Title' />
                 {/* <input value={blog} onChange={(e) => { setBlog(e.target.value) }} type='text' placeholder='Blog' /> */}
-                <ReactQuill
+                <ReactQuill className='editor'
+                    onChange={handleBlog}
                     value={blog}
 
                 />
@@ -138,7 +164,8 @@ function AddBlog() {
                 </select>
                 <input className='blog-file' onChange={(e) => { fileHandler(e) }} type='file' />
                 {imageUrl != null && <img style={{ height: '270px', marginLeft: '25px', width: '40%' }} alt='categoryImg' src={imageUrl} />}
-                <button className='blog-btn' type='submit'>Submit</button>
+                <button className='blog-btn' type='submit' > {loading && < CircularProgress size={20} color='inherit' style={{ marginRight: '10px' }} />} <span> Submit </span></button >
+
             </form >
         </div >
     );

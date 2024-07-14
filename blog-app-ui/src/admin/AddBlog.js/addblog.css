@@ -6,12 +6,12 @@
     outline: none;
     border-radius: 10px;
     box-shadow: 1px 1px 10px 2px rgb(116, 115, 115);
-    margin-top: 10px;
+    margin-top: 50px;
 }
 
 
 .blog-form {
-    width: 100%;
+    width: 99%;
 }
 
 .blog-title {
@@ -42,5 +42,16 @@
 .blog-btn:hover {
     background-color: green;
     color: white;
+}
 
+.editor {
+    margin-left: 25px;
+    height: 500px;
+    background-color: white;
+}
+
+.blog-container {
+    height: 100vh;
+    overflow: scroll;
+    overflow-x: hidden;
 }

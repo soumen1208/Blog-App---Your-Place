@@ -4,6 +4,8 @@ import { getDownloadURL, getStorage, ref, uploadBytes } from 'firebase/storage'
 import { app } from '../../firebase';
 import axios from 'axios';
 import { useLocation, useNavigate } from 'react-router-dom';
+import CircularProgress from '@mui/material/CircularProgress';
+
 
 
 function AddCategory() {
@@ -11,6 +13,7 @@ function AddCategory() {
     const [categoryName, setCategoryName] = useState('');
     const [file, setFile] = useState(null);
     const [imageUrl, setInamgeUrl] = useState(null);
+    const [loading, setLoading] = useState(false);
 
     const navigate = useNavigate();
     const location = useLocation()
@@ -21,7 +24,7 @@ function AddCategory() {
             setCategoryName(location.state.myData.name)
             setInamgeUrl(location.state.myData.imageUrl)
         }
-    }, [])
+    }, [location.state])
 
     const fileHandler = (e) => {
         setFile(e.target.files[0]);
@@ -30,6 +33,7 @@ function AddCategory() {
 
     const submitHandler = async (event) => {
         event.preventDefault();
+        setLoading(true);
         if (location.state == null) {
 
             console.log(categoryName, file);
@@ -44,8 +48,13 @@ function AddCategory() {
             axios.post('http://localhost:3000/category', {
                 name: categoryName,
                 imageUrl: uploadedImgUrl
+            }, {
+                headers: {
+                    Authorization: "Bearer " + localStorage.getItem('token')
+                }
             })
                 .then(res => {
+                    setLoading(false)
                     console.log(res.data);
                     navigate('/admin/dashboard/category')
 
@@ -58,8 +67,13 @@ function AddCategory() {
             axios.put('http://localhost:3000/category/' + location.state.myData._id, {
                 name: categoryName,
                 imageUrl: location.state.myData.imageUrl
+            }, {
+                headers: {
+                    Authorization: "Bearer " + localStorage.getItem('token')
+                }
             })
                 .then(res => {
+                    setLoading(false)
                     console.log(res.data);
                     navigate('/admin/dashboard/category')
 
@@ -81,8 +95,13 @@ function AddCategory() {
             axios.put('http://localhost:3000/category', {
                 name: categoryName,
                 imageUrl: uploadedImgUrl
+            }, {
+                headers: {
+                    Authorization: "Bearer " + localStorage.getItem('token')
+                }
             })
                 .then(res => {
+                    setLoading(false)
                     console.log(res.data);
                     navigate('/admin/dashboard/category')
 
@@ -102,7 +121,8 @@ function AddCategory() {
                 <input value={categoryName} onChange={(e) => { setCategoryName(e.target.value) }} type='text' placeholder='Category Name' />
                 <input onChange={(e) => { fileHandler(e) }} type='file' />
                 {imageUrl != null && <img style={{ height: '300px', marginLeft: '25px' }} alt='categoryImg' src={imageUrl} />}
-                <button className='cat-btn' type='submit'>Submit</button>
+                <button className='cat-btn' type='submit' > {loading && < CircularProgress size={20} color='inherit' style={{ marginRight: '10px' }} />} <span> Submit </span></button >
+
             </form>
         </div>
     );

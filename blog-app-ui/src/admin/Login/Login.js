@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import '../Login/login.css'
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import CircularProgress from '@mui/material/CircularProgress';
 
 function Login() {
 
@@ -9,15 +10,18 @@ function Login() {
 
     const [userName, setUserName] = useState('');
     const [password, setPassword] = useState('');
+    const [loading, setLoading] = useState(false);
 
     const submitHandler = (event) => {
         event.preventDefault();
+        setLoading(true)
         console.log(userName, password);
         axios.post('http://localhost:3000/auth/admin/login', {
             userName: userName,
             password: password
         })
             .then(res => {
+                setLoading(false)
                 console.log(res.data);
 
                 localStorage.setItem('email', res.data.email)
@@ -43,8 +47,8 @@ function Login() {
 
                     </div>
                     <div className='btn'>
-                        <button className='blue' type='submit' >Sign-up</button>
-                        <button className='green' type='submit' >Sign-in</button >
+                        <button className='green' type='submit' > {loading && < CircularProgress size={20} color='inherit' style={{ marginRight: '10px' }} />} <span> Sign-in </span></button >
+                        <p style={{ marginLeft: "25px" }}>New User? Please <Link>Signup</Link></p>
 
                     </div>
 

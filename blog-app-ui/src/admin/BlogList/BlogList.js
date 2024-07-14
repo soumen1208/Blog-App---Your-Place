@@ -18,7 +18,7 @@ function BlogList() {
         axios.get('http://localhost:3000/blog')
             .then(res => {
                 console.log(res.data.blogs);
-                setBlogs(res.data.blogs);
+                setBlogs(res.data.blogs.reverse());
             })
             .catch(err => {
                 console.log(err);
@@ -34,7 +34,11 @@ function BlogList() {
             deleteObject(myRef)
 
                 .then(result => {
-                    axios.delete('http://localhost:3000/blog/' + blogData._id)
+                    axios.delete('http://localhost:3000/blog/' + blogData._id, {
+                        headers: {
+                            Authorization: "Bearer " + localStorage.getItem('token')
+                        }
+                    })
                         .then(result => {
                             console.log(result);
                             getBlogs();
@@ -55,18 +59,18 @@ function BlogList() {
             {blogs.map(data => (
                 <div key={data._id} className='blogContain'>
 
-                    <div className='blogTitle' style={{ fontFamily: 'fantasy', color: 'white' }}>
+                    <div className='blogDiv1' style={{ fontFamily: 'fantasy', color: 'white' }}>
                         <p>{data.title}</p>
                     </div>
 
-                    <div className='blogTitle'>
+                    <div className='blogDiv2'>
                         <img className='blogImg' src={data.imageUrl} alt='blogImage'></img>
                     </div>
 
-                    <div className='blogTitle'>
+                    <div className='blogDiv2'>
                         <button onClick={() => { navigate('/admin/dashboard/edit-blog', { state: { myData: data } }) }} className='editBtnBlog' type='submit'>Edit</button>
                     </div>
-                    <div className='blogTitle'>
+                    <div className='blogDiv2'>
                         <button onClick={() => { deleteBlog(data) }} className='deleteBtnBlog' type='submit'>Delete</button>
                     </div>
 

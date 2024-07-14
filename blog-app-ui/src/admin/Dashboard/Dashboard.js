@@ -1,6 +1,6 @@
 import React from 'react'
 import '../Dashboard/dashboard.css';
-import { Link, Outlet } from 'react-router-dom';
+import { Link, Outlet, useNavigate } from 'react-router-dom';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
 import PlaylistAddIcon from '@mui/icons-material/PlaylistAdd';
@@ -10,6 +10,13 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import CommentIcon from '@mui/icons-material/Comment';
 
 function Dashboard() {
+    const navigate = useNavigate()
+
+    const logOutHandler = () => {
+        localStorage.clear();
+        navigate('/admin/login')
+    }
+
     return (
         <div className='container'>
             <div className='leftNav'>
@@ -23,7 +30,7 @@ function Dashboard() {
                 <Link to={'/admin/dashboard/category'} className='link'> <CategoryIcon /> <span style={{ marginLeft: '10px' }}>Category List</span></Link>
                 <Link to={'/admin/dashboard/add-category'} className='link'> <PostAddIcon /> <span style={{ marginLeft: '10px' }}>Add Category</span></Link>
                 <Link to={'/admin/dashboard/comment'} className='link'> <CommentIcon /> <span style={{ marginLeft: '10px' }}>Comments</span></Link>
-                <Link to={'/admin/login'} className='link'> <LogoutIcon /> <span style={{ marginLeft: '10px' }}>Log Out</span> </Link>
+                <Link onClick={logOutHandler} className='link'> <LogoutIcon /> <span style={{ marginLeft: '10px' }}>Log Out</span> </Link>
             </div>
             <div className='content'>
                 <Outlet />

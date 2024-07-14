@@ -2,9 +2,10 @@ const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
 const Category = require('../model/category');
+const checkAdmin = require('../middleware/checkAdmin');
 
 // post category by admin
-router.post('/', async (req, res) => {
+router.post('/', checkAdmin, async (req, res) => {
     const newCategory = new Category({
         _id: new mongoose.Types.ObjectId,
         name: req.body.name,
@@ -42,7 +43,7 @@ router.get('/', (req, res) => {
 })
 
 // delete category by id || DELETE
-router.delete('/:id', (req, res) => {
+router.delete('/:id', checkAdmin, (req, res) => {
     // const { id } = req.params;
     Category.deleteOne({ _id: req.params.id })
         // .select('_id title description imageUrl')
@@ -60,7 +61,7 @@ router.delete('/:id', (req, res) => {
 })
 
 // update the category || PUT
-router.put('/:id', (req, res) => {
+router.put('/:id', checkAdmin, (req, res) => {
     Category.updateOne({ _id: req.params.id }, req.body)
         .then(result => {
             res.status(200).json({
