@@ -7,17 +7,16 @@ function Navbar() {
         <div className='nav'>
 
             <div className='navLogo'>
-                <p className='logoP'><span className='logo'>S</span>oumen's Blog</p>
+                <p className='logoP'><span className='logo'>Daily Spark</span></p>
             </div>
 
             <div className='navLink'>
-                <Link to='/home' className='links'>Home</Link>
-                <Link to='/blog' className='links'>Blog</Link>
-                <Link to='/about' className='links'>AboutUs</Link>
-                <Link to='/contact' className='links'>Contact</Link>
-                <Link to='/user-login' className='links'>LogIn</Link>
+                <Link to='/home' className='links'>HOME</Link>
+                <Link to='/blog' className='links'>BLOG</Link>
+                <Link to='/about' className='links'>ABOUTUS</Link>
+                <Link to='/contact' className='links'>CONTACT</Link>
+                <Link to='/user-login' className='links'>LOGIN</Link>
             </div>
-
 
         </div>
     )

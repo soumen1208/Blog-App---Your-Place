@@ -1,0 +1,32 @@
+.footerContainer {
+    background-color: black;
+    height: 25vw;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.footerLogo {
+    height: 10vw;
+    width: 10vw;
+    border-radius: 50%;
+    margin-left: 2vw;
+}
+
+.socialMedia {
+    color: white;
+    margin-top: 10px;
+}
+
+@media screen and (max-width: 750px) {
+    .footerContainer {
+        height: 40vw;
+        width: 100%;
+    }
+
+    .footerLogo {
+        height: 20vw;
+        width: 20vw;
+    }
+}

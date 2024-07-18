@@ -1,0 +1,184 @@
+.banner {
+    height: 20vw;
+    width: 100%;
+    background: linear-gradient(to right, rgb(51, 0, 128), rgb(201, 228, 79));
+    display: flex;
+    flex-direction: row;
+}
+
+.devImg {
+    margin-top: 2%;
+    height: 20vw;
+    width: 25vw;
+}
+
+.welcome {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+}
+
+.DS {
+    font-size: 5vw;
+    color: white;
+    text-shadow: 2px 2px 2px black;
+}
+
+.welTo {
+    font-size: 2vw;
+    color: white;
+}
+
+.heading {
+    font-size: 1.3vw;
+    margin: 5px;
+    color: rgb(244, 31, 7);
+    text-align: center;
+}
+
+.latestCat {
+    /* height: 17vw;
+    background-color: darkgrey;*/
+    margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+
+}
+
+.Image {
+    height: 12vw;
+    width: 12vw;
+    border-radius: 50%;
+    box-shadow: 1px 1px 15px 4px black;
+    margin-top: 1.5vw;
+
+}
+
+.headingPost {
+    font-size: 1.3vw;
+    margin: vw;
+    color: rgb(244, 31, 7);
+    text-align: center;
+
+}
+
+.latestPost {
+    height: 20vw;
+    background-color: rgb(238, 227, 227);
+    margin-top: 2vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    margin-bottom: 3vw;
+}
+
+.postDiv {
+    background-color: rgb(34, 33, 33);
+    width: 12vw;
+    height: 18vw;
+    /* border: 5px solid black; */
+    box-shadow: 1px 1px 4px 7px black;
+
+}
+
+.ImageBlog {
+    height: 12vw;
+    width: 12vw;
+    box-shadow: 1px 1px 10px 2px black;
+
+}
+
+.catBlog {
+    color: white;
+    font-size: smaller;
+    text-align: center;
+}
+
+
+
+@media screen and (max-width: 750px) {
+    .banner {
+        height: 45vw;
+    }
+
+    .links {
+        font-size: 2vw;
+
+    }
+
+    .logo {
+        font-size: 4vw;
+    }
+
+    .navLink {
+        width: 70%;
+    }
+
+    .devImg {
+        margin-top: 20px;
+        height: 40vw;
+        width: 42vw;
+    }
+
+    .heading {
+        font-size: 3vw;
+    }
+
+    .latestCat {
+        margin-top: 7px;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        gap: 10px;
+    }
+
+    .Image {
+        height: 35vw;
+        width: 35vw;
+    }
+
+    .dataName {
+        font-size: 4vw;
+    }
+
+
+    .headingPost {
+        font-size: 3vw;
+    }
+
+    .latestPost {
+        height: 160vw;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        gap: 20px;
+
+    }
+
+    .postDiv {
+        background-color: rgb(34, 33, 33);
+        width: 35vw;
+        height: 67vw;
+        box-shadow: 1px 1px 1px 10px black;
+
+    }
+
+    .ImageBlog {
+        height: 35vw;
+        width: 35vw;
+        box-shadow: 1px 1px 10px 2px black;
+
+    }
+
+    .catBlog {
+        color: white;
+        font-size: smaller;
+        text-align: center;
+    }
+
+}

@@ -93,6 +93,22 @@ router.get('/get/count', (req, res) => {
         })
 })
 
+// return n latest category
+router.get('/latest-category/:n', (req, res) => {
+    Category.find().sort({ $natural: -1 }).limit(req.params.n)
+        .then(result => {
+            res.status(200).json({
+                Category: result
+            })
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json({
+                error: err
+            })
+        })
+})
+
 module.exports = router;
 
 
