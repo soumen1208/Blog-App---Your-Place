@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import '../BlogUser/blog.css'
 import axios from 'axios';
+import { Link, useNavigate } from 'react-router-dom';
 
 function BlogUser() {
 
@@ -48,6 +49,17 @@ function BlogUser() {
   }
 
 
+
+  const navigate = useNavigate()
+  const showBlogHandler = () => {
+    axios.get('http://localhost:3000/blog/')
+      .then(res => {
+        setBlog(res.data.blog)
+        navigate('/show-blog')
+      })
+  }
+
+
   return (
     <div className='blogsContainer'>
 
@@ -56,9 +68,12 @@ function BlogUser() {
         <div className='allBlogs'>
           {blog.map(data => (
             <div key={data._id} className='s-blogs'>
-              <img className='imageBlogs' src={data.imageUrl} alt='ImageBlog'></img>
+              <Link onClick={() => { showBlogHandler(data._id) }}>
+                <img className='imageBlogs' src={data.imageUrl} alt='ImageBlog'></img>
+              </Link>
               <p className='catsBlogs'>{data.category}</p>
               <h5 className='dataNamesBlogs' style={{ color: 'Black' }}>{data.title}</h5>
+              {/* <h5 style={{ color: 'Black' }}>{data.description}</h5> */}
             </div>
           ))}
         </div>
@@ -76,6 +91,8 @@ function BlogUser() {
           ))}
         </div>
       </div>
+
+
 
     </div>
   )

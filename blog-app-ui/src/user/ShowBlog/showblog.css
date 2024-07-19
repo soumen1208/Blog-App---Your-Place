@@ -1,0 +1,29 @@
+.showBlog {
+    height: 100vh;
+    width: 100%;
+    /* display: flex;
+    align-items: center;
+    flex-direction: column; */
+}
+
+.showBlogImage {
+    height: 13vw;
+    width: 20vw;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+
+}
+
+.showBlogTitle {
+    color: rgb(40, 8, 249);
+    font-size: 2vw;
+    text-align: center;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.showBlogDesc {
+    font-size: 1vw;
+    font-family: none;
+}

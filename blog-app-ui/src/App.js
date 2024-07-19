@@ -16,6 +16,7 @@ import About from './user/About/About';
 import Contact from './user/Contact/Contact';
 import BlogUser from './user/BlogUser/BlogUser';
 import UserLogin from './user/UserLogin/UserLogin';
+import ShowBlog from './user/ShowBlog/ShowBlog';
 
 const router = createBrowserRouter([
   {
@@ -25,9 +26,10 @@ const router = createBrowserRouter([
       { path: 'about', element: <About /> },
       { path: 'contact', element: <Contact /> },
       { path: 'blog', element: <BlogUser /> },
-      { path: 'user-login', element: <UserLogin /> }
+      { path: 'user-login', element: <UserLogin /> },
     ]
   },
+  { path: 'show-blog', element: <ShowBlog /> },
   {
     path: 'admin', element: <AdminLayout />, children: [
       { path: 'login', element: <Login /> },
