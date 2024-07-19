@@ -14,8 +14,8 @@ function ShowBlog() {
     })
 
 
-    const getBlogById = (id) => {
-        axios.get('http://localhost:3000/blog/' + id)
+    const getBlogById = () => {
+        axios.get('http://localhost:3000/blog/6693a939ea7eb7f649b503ab')
             .then(res => {
                 console.log(res.data);
                 setBlog(res.data.blog);
